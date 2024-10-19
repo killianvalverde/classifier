@@ -27,6 +27,8 @@
 #ifndef CLASSIFIER_PROGRAM_ARGS_HPP
 #define CLASSIFIER_PROGRAM_ARGS_HPP
 
+#include <speed/speed.hpp>
+
 
 namespace classifier {
 
@@ -36,6 +38,9 @@ namespace classifier {
  */
 struct program_args
 {
+    spd::fsys::rx_directory_path source_dir;
+    spd::fsys::output_directory_path destination_dir;
+    std::string categories_file_nme = ".categories.json";
 };
 
 
