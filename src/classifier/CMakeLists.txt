@@ -1,5 +1,6 @@
 set(CLASSIFIER_SOURCE_FILES
         exception.hpp
+        json.hpp
         program.cpp
         program.hpp
         program_args.hpp

@@ -11,6 +11,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
 if(MSVC)
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
     add_compile_options(/Zc:preprocessor)
+    add_compile_options(/EHsc)
+    add_compile_options(/utf-8)
 endif()
 
 option(BUILD_TESTS "Build tests" OFF)
