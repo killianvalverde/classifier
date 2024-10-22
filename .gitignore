@@ -1,0 +1,39 @@
+# CMake build directories
+build/
+cmake-build/
+cmake-build-debug/
+cmake-build-release/
+cmake-build-debug-visual-studio/
+cmake-build-debug-wsl/
+cmake-build-release-visual-studio/
+cmake-build-release-wsl/
+cmake-build-relwithdebinfo-visual-studio/
+cmake-build-relwithdebinfo-wsl/
+
+# Build outputs
+out/
+
+# Libraries
+lib/
+
+# Compiled binaries
+bin/
+
+# Documentation output
+doc/
+docs/html/
+docs/latex/
+
+# IDE directories
+.idea/
+.vs/
+.vscode/
+
+# macOS files
+.DS_Store
+
+# Windows files
+desktop.ini
+Desktop.ini
+Thumbs.db
+CMakeSettings.json
