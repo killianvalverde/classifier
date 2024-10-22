@@ -30,6 +30,7 @@
 #include <speed/speed.hpp>
 
 #include "exception.hpp"
+#include "json.hpp"
 #include "program_args.hpp"
 
 
@@ -42,6 +43,10 @@ namespace classifier {
 class program
 {
 public:
+    using char_type = std::filesystem::path::value_type;
+
+    using string_type = std::basic_string<char_type>;
+
     /**
      * @brief       Constructor with parameters.
      * @param       prog_args : The program arguments.
@@ -55,10 +60,49 @@ public:
     int execute();
 
 private:
+    bool parse_categories_file(const std::filesystem::path& categories_file_pth);
+
+    bool parse_entries(json& json_parsr, const std::filesystem::path& current_source_dir);
+
+    bool parse_value(
+            json::value_type& val,
+            const std::filesystem::path& current_source_dir,
+            const std::filesystem::path& current_destination_dir
+    );
+
+    bool parse_icon(
+            json::value_type& val,
+            const std::filesystem::path& current_source_dir,
+            const std::filesystem::path& current_destination_dir
+    );
+
+    bool set_icon(
+            const std::filesystem::path& current_source_dir,
+            const std::filesystem::path& current_destination_dir
+    );
+
+    bool make_directory(const std::filesystem::path& directory_pth);
+
+    bool configure_directory(const std::filesystem::path& directory_pth);
+
+    bool make_shortcut(
+            const std::filesystem::path& target_pth,
+            const std::filesystem::path& shortcut_pth
+    );
+
+    void check_extra_file(const std::filesystem::path& extra_file_pth);
+
+    void delete_extra_file(const std::filesystem::path& extra_file_pth) const;
+
+    void escape_special_characters_in_regex_string(std::string& inpt);
 
 private:
     /** The program arguments. */
     program_args prog_args_;
+
+    std::set<std::uint64_t> inode_st_;
+
+    bool extra_files_fnd_;
 };
 
 

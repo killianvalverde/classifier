@@ -40,7 +40,34 @@ int main(int argc, char* argv[])
         spd::ap::arg_parser ap("classifier");
         
         ap.add_help_menu()
-                .description("classifier parses a set of directories and builds a directory tree in which links are placed in order to classify them into different categories.");
+                .description("classifier parses a set of directories and builds a directory tree "
+                             "in which links are placed in order to classify them into different "
+                             "categories.")
+                .epilogue("Example:\n"
+                          "$ classifier ./Index ./Categories\n"
+                          "\n"
+                          "Example of JSON file:\n"
+                          "{\n"
+                          "    \"Published\": \"2013\",\n"
+                          "    \"Genres\": [\"Drama\", \"Shoujo\"],\n"
+                          "    \"Authors\": \"Keiko Suenobu\",\n"
+                          "    \"Serialization\": \"Bessatsu Friend\",\n"
+                          "    \"Mark\": 9,\n"
+                          "    \"Languages\": [\"French\", \"English\"],\n"
+                          "    \"Status\": \"Completed\"\n"
+                          "}");
+
+        ap.add_key_value_arg("--categories-file", "-f")
+                .description("The categories file name. The default value is '.categories.json'.")
+                .store_into(&prog_args.categories_file_nme);
+
+        ap.add_keyless_arg("SOURCE-DIR")
+                .description("Source directory.")
+                .store_into(&prog_args.source_dir);
+
+        ap.add_keyless_arg("DESTINATION-DIR")
+                .description("Destination directory.")
+                .store_into(&prog_args.destination_dir);
                 
         ap.add_help_arg("--help", "-h")
                 .description("Display this help and exit.");
